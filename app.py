@@ -86,4 +86,4 @@ with gr.Blocks(fill_height = True) as app:
         )
         
 
-app.launch(server_port=7000)
+app.launch()
