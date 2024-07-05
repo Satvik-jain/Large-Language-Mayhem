@@ -7,8 +7,12 @@ from langchain.schema.output_parser import StrOutputParser
 from langchain_huggingface import ChatHuggingFace
 from langchain_google_genai import ChatGoogleGenerativeAI
 import os
+from huggingface_hub import login
 
+login(token=os.environ["HUGGING_FACE_API_KEY"])
 os.environ['CURL_CA_BUNDLE'] = ''
+
+notebook_login()
 load_dotenv()
 
 class Bot():
