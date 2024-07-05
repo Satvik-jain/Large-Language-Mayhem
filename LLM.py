@@ -9,6 +9,8 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 import os
 from huggingface_hub import login
 
+load_dotenv()
+
 login(token=os.environ["HUGGING_FACE_API_KEY"])
 os.environ['CURL_CA_BUNDLE'] = ''
 
