@@ -12,7 +12,6 @@ from huggingface_hub import login
 login(token=os.environ["HUGGING_FACE_API_KEY"])
 os.environ['CURL_CA_BUNDLE'] = ''
 
-notebook_login()
 load_dotenv()
 
 class Bot():
