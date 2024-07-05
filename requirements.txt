@@ -10,3 +10,4 @@ numpy
 pandas
 gradio
 huggingface_hub
+sentencepiece
