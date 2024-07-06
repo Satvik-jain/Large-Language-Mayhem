@@ -30,8 +30,8 @@ with gr.Blocks(fill_height = True) as app:
         with gr.Row():
             with gr.Accordion("Current Warriors",open = False):
                 with gr.Row():
-                    war1= gr.Textbox(arena.model1, interactive= False, show_label=False, placeholder="Give a Query and Hit Enter")
-                    war2 = gr.Textbox(arena.model2, interactive= False, show_label= False, placeholder="Give a Query and Hit Enter")
+                    war1= gr.Textbox(arena.model1, interactive= False, show_label=False)
+                    war2 = gr.Textbox(arena.model2, interactive= False, show_label= False)
         with gr.Row():
             with gr.Accordion("👆 Vote", open = False):
                 with gr.Row():
