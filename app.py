@@ -28,7 +28,7 @@ with gr.Blocks(fill_height = True) as app:
                     chatbox2 = gr.Chatbot(label = "Warrior B", show_copy_button = True)
             textbox = gr.Textbox(show_label = False, placeholder = "👉 Enter your prompt")
         with gr.Row():
-            with gr.Accordion("Current Warriors",open = False):
+            with gr.Accordion("🥷 Current Warriors",open = False):
                 with gr.Row():
                     war1= gr.Textbox(arena.model1, interactive= False, show_label=False)
                     war2 = gr.Textbox(arena.model2, interactive= False, show_label= False)
