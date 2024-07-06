@@ -16,6 +16,8 @@ with gr.Blocks(fill_height = True) as app:
                     - Press 🎲 Random to change the models.
                     - Everything else except the Random button will only clear the screen, model being the same.
                     - Have fun and enjoy the language mayhem!
+                    - Warrior names will be visible after your first query (after random also you will have to give a query to see changes)
+                    - Don't See Warrior names before voting
                     ''')
         with gr.Row():
             with gr.Accordion("🥷 Warriors", open = False):
