@@ -27,7 +27,11 @@ with gr.Blocks(fill_height = True) as app:
                 with gr.Column():
                     chatbox2 = gr.Chatbot(label = "Warrior B", show_copy_button = True)
             textbox = gr.Textbox(show_label = False, placeholder = "👉 Enter your prompt")
-
+        with gr.Row():
+            with gr.Accordion("Current Warriors",open = False):
+                with gr.Row():
+                    war1= gr.Textbox(arena.model1, interactive= False, show_label=False, placeholder="Give a Query and Hit Enter")
+                    war2 = gr.Textbox(arena.model2, interactive= False, show_label= False, placeholder="Give a Query and Hit Enter")
         with gr.Row():
             with gr.Accordion("👆 Vote", open = False):
                 with gr.Row():
@@ -48,10 +52,26 @@ with gr.Blocks(fill_height = True) as app:
             inputs = [temp_slider, textbox],
             outputs = [chatbox1, chatbox2]
         )
+        textbox.submit(
+            fn = arena.current_model2,
+            outputs = war2
+        )
+        textbox.submit(
+            fn = arena.current_model1,
+            outputs = war1
+        )
         submit_button.click(
             fn = arena.gen_output,
             inputs = [temp_slider, textbox],
             outputs = [chatbox1, chatbox2]
+        )
+        submit_button.click(
+            fn = arena.current_model1,
+            outputs = war1
+        )
+        submit_button.click(
+            fn = arena.current_model2,
+            outputs = war2
         )
         vote_a.click(
             fn=lambda: score.update(arena.model1, score.df)

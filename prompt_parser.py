@@ -21,6 +21,11 @@ class Parse_Prompt(Bot):
         self.clear_history()
         self.change = True
 
+    def current_model1(self):
+        return self.model1
+    def current_model2(self):
+        return self.model2
+
     def gen_output(self, temp, prompt):
         if self.change:
             [self.model1, self.model2] = self.model_init()
