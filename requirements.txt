@@ -1,0 +1,13 @@
+langchain==0.2.6
+langchain-community==0.2.6
+langchain-core==0.2.10
+langchain-google-genai==1.0.7
+langchain-groq==0.1.5
+langchain-huggingface==0.0.3
+langchain-text-splitters==0.2.1
+requests==2.27.1
+numpy
+pandas
+gradio
+huggingface_hub
+sentencepiece
