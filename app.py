@@ -108,4 +108,4 @@ with gr.Blocks(fill_height = True) as app:
         )
         
 
-app.launch()
+app.launch(share = True)
