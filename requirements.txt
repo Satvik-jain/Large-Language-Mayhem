@@ -12,3 +12,4 @@ pandas
 gradio
 huggingface_hub
 sentencepiece
+fastapi==0.112.2
