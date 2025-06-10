@@ -9,7 +9,7 @@ langchain-text-splitters==0.2.1
 requests==2.27.1
 numpy
 pandas
-gradio
+gradio==5.33.1
 huggingface_hub
 sentencepiece
 fastapi==0.112.2
