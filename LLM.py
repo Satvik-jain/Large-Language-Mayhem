@@ -21,19 +21,54 @@ load_dotenv()
 
 class Bot():
     def __init__(self):
-        # Updated Groq models (2024-2025)
-        self.groq_models = ['llama-3.1-8b-instant', 'llama-3.3-70b-versatile']
-        # Hugging Face models
-        self.hf_models = ["01-ai/Yi-1.5-34B-Chat", "google/gemma-1.1-2b-it",\
-                          "google/gemma-1.1-7b-it"]
-        # Updated Google Gemini models (2024-2025) - using Google AI Studio models
-        # Using gemini-2.5-flash and gemini-2.5-flash-lite as specified
-        # If these exact names don't work, try: gemini-2.0-flash-exp, gemini-1.5-flash, or gemini-1.5-pro
-        self.google_models = ["gemini-2.5-flash", "gemini-2.5-flash-lite"]
-        # Combined list of all models
-        self.models = ["gemini-2.5-flash", "gemini-2.5-flash-lite", 
-                      "01-ai/Yi-1.5-34B-Chat", "google/gemma-1.1-2b-it", "google/gemma-1.1-7b-it", 
-                      'llama-3.1-8b-instant', 'llama-3.3-70b-versatile']
+        # Groq models (2024-2025) - Various providers
+        self.groq_models = [
+            # Llama models
+            'llama-3.1-8b-instant',
+            'llama-3.3-70b-versatile',
+            # DeepSeek models
+            'deepseek-r1-distill-llama-8b',
+            'deepseek-r1-distill-qwen-7b',
+            'deepseek-chat',
+            # Qwen models
+            'qwen-2.5-7b-instruct',
+            'qwen-2.5-14b-instruct',
+            'qwen-2.5-32b-instruct',
+            'qwen-2.5-72b-instruct',
+            # Gemma models
+            'gemma-2-9b-it',
+            'gemma-2-27b-it',
+            # Mistral models
+            'mistral-large-2407',
+            'pi-3-mini',
+            'pi-3'
+        ]
+        # Hugging Face models - Removed as requested
+        self.hf_models = []
+        # Google Gemini models (2024-2025) - using Google AI Studio models
+        self.google_models = ["gemini-2.5-flash", "gemini-2.5-flash-lite", "gemini-1.5-pro"]
+        # Combined list of all models (15 total)
+        self.models = [
+            # Google Gemini (3 models)
+            "gemini-2.5-flash", 
+            "gemini-2.5-flash-lite",
+            "gemini-1.5-pro",
+            # Groq models (12 models)
+            'llama-3.1-8b-instant',
+            'llama-3.3-70b-versatile',
+            'deepseek-r1-distill-llama-8b',
+            'deepseek-r1-distill-qwen-7b',
+            'deepseek-chat',
+            'qwen-2.5-7b-instruct',
+            'qwen-2.5-14b-instruct',
+            'qwen-2.5-32b-instruct',
+            'qwen-2.5-72b-instruct',
+            'gemma-2-9b-it',
+            'gemma-2-27b-it',
+            'mistral-large-2407',
+            'pi-3-mini',
+            'pi-3'
+        ]
 
     def call_groq(self, model, temp = 0.7, given_prompt = "Hi"):
         try:
