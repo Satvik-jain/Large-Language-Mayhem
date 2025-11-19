@@ -116,4 +116,4 @@ with gr.Blocks() as app:
 
         
 
-app.launch(share = True)
+app.launch(share = True, show_api = False)
