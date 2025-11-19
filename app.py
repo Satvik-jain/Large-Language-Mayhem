@@ -79,7 +79,7 @@ with gr.Blocks() as app:
             fn=lambda: score.update(arena.model1, score.df)
         )
         vote_b.click(
-            fn = lambda: score.update(arena.model2, score.df)
+            fn=lambda: score.update(arena.model2, score.df)
         )
         vote_tie.click(
             fn = arena.change_models
@@ -95,15 +95,22 @@ with gr.Blocks() as app:
         gr.Markdown('''## ⚔️ LLM: Large Language Mayhem
                     - Voting should be fair and based on the performance of the models.
                     - No cheating or manipulating the outcomes.
-                    - Click on Generate button to Update the 💯 Scoreboard.
+                    - Click Refresh to update the scoreboard after voting.
                     ''')
-        gr.Interface(
-            fn = score.df_show,
-            inputs = None,
-            outputs=gr.Dataframe(type="pandas", label="Scoreboard", headers = ["","",""]),
-            live = True,
-            allow_flagging = "never",
-            clear_btn = None
+        scoreboard_df = gr.Dataframe(
+            value=score.df_show(),
+            label="Scoreboard",
+            interactive=False,
+            wrap=True
+        )
+        
+        def update_scoreboard():
+            return score.df_show()
+        
+        update_btn = gr.Button("🔄 Refresh Scoreboard", variant="secondary")
+        update_btn.click(
+            fn=update_scoreboard,
+            outputs=scoreboard_df
         )
 
 
