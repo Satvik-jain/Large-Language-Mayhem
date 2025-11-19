@@ -7,9 +7,6 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain_google_genai import ChatGoogleGenerativeAI
 import os
 from huggingface_hub import login
-import signal
-from functools import wraps
-
 load_dotenv()
 
 # Only login if API key exists
@@ -21,27 +18,6 @@ if "HUGGING_FACE_API_KEY" in os.environ:
 os.environ['CURL_CA_BUNDLE'] = ''
 
 load_dotenv()
-
-# Timeout decorator
-def timeout_handler(signum, frame):
-    raise TimeoutError("API call timed out")
-
-def with_timeout(seconds=30):
-    def decorator(func):
-        @wraps(func)
-        def wrapper(*args, **kwargs):
-            # Set signal handler for timeout
-            signal.signal(signal.SIGALRM, timeout_handler)
-            signal.alarm(seconds)
-            try:
-                result = func(*args, **kwargs)
-            except TimeoutError:
-                return f"Error: Request timed out after {seconds} seconds. The API might be slow or unavailable."
-            finally:
-                signal.alarm(0)  # Cancel the alarm
-            return result
-        return wrapper
-    return decorator
 
 class Bot():
     def __init__(self):
