@@ -100,12 +100,12 @@ with gr.Blocks(fill_height = True) as app:
         gr.Interface(
             fn = score.df_show,
             inputs = None,
-            outputs=gr.Dataframe(type="pandas", label="Scoreboard", headers = ["","",""]),
+            outputs = gr.Dataframe(type="pandas", label="Scoreboard"),
             live = True,
             allow_flagging = "never",
             clear_btn = None
-
         )
+
         
 
 app.launch(share = True)
