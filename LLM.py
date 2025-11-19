@@ -21,13 +21,19 @@ load_dotenv()
 
 class Bot():
     def __init__(self):
-        self.groq_models = ['gemma-7b-it', 'llama3-70b-8192',\
-                            'llama3-8b-8192', 'mixtral-8x7b-32768']
+        # Updated Groq models (2024-2025)
+        self.groq_models = ['llama-3.1-8b-instant', 'llama-3.3-70b-versatile']
+        # Hugging Face models
         self.hf_models = ["01-ai/Yi-1.5-34B-Chat", "google/gemma-1.1-2b-it",\
                           "google/gemma-1.1-7b-it"]
-        self.google_models = ["gemini-pro", "gemini-1.5-flash"]
-        self.models = ["gemini-pro", "gemini-1.5-flash", "01-ai/Yi-1.5-34B-Chat", "google/gemma-1.1-2b-it",\
-                          "google/gemma-1.1-7b-it", 'gemma-7b-it', 'llama3-70b-8192', 'llama3-8b-8192', 'mixtral-8x7b-32768']
+        # Updated Google Gemini models (2024-2025) - using Google AI Studio models
+        # Using gemini-2.5-flash and gemini-2.5-flash-lite as specified
+        # If these exact names don't work, try: gemini-2.0-flash-exp, gemini-1.5-flash, or gemini-1.5-pro
+        self.google_models = ["gemini-2.5-flash", "gemini-2.5-flash-lite"]
+        # Combined list of all models
+        self.models = ["gemini-2.5-flash", "gemini-2.5-flash-lite", 
+                      "01-ai/Yi-1.5-34B-Chat", "google/gemma-1.1-2b-it", "google/gemma-1.1-7b-it", 
+                      'llama-3.1-8b-instant', 'llama-3.3-70b-versatile']
 
     def call_groq(self, model, temp = 0.7, given_prompt = "Hi"):
         try:

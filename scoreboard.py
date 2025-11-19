@@ -11,10 +11,18 @@ class Score(Parse_Prompt):
     def init_scores(self):
         try:
             self.df = pd.read_csv(self.file_path)
-            # Update model names in existing CSV if they've changed
+            # Update model names in existing CSV if they've changed (migrate old models to new ones)
             model_mapping = {
-                'gemini-1.0-pro': 'gemini-pro',
-                'gemini-1.5-pro': 'gemini-1.5-flash'  # Map to available model
+                # Old Google models -> New models
+                'gemini-1.0-pro': 'gemini-1.5-flash',
+                'gemini-pro': 'gemini-1.5-flash',
+                'gemini-1.5-pro': 'gemini-1.5-pro',
+                'gemini-1.5-pro-latest': 'gemini-1.5-pro',
+                # Old Groq models -> New models
+                'gemma-7b-it': 'llama-3.1-8b-instant',
+                'llama3-70b-8192': 'llama-3.3-70b-versatile',
+                'llama3-8b-8192': 'llama-3.1-8b-instant',
+                'mixtral-8x7b-32768': 'llama-3.1-8b-instant'
             }
             self.df['Models'] = self.df['Models'].replace(model_mapping)
             # Ensure all current models are in the dataframe
