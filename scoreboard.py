@@ -20,8 +20,8 @@ class Score(Parse_Prompt):
             self.df.to_csv(self.file_path, index=False)
 
     def update(self, model, df):
-        df.loc[self.df["Models"] == model, 'Fights Won'] += 1
-        df.to_csv(self.file_path, index=False)
+        self.df.loc[self.df["Models"] == model, 'Fights Won'] += 1
+        self.df.to_csv(self.file_path, index=False)
         self.clear_history()
 
     def df_show(self):

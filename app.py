@@ -8,7 +8,7 @@ warnings.filterwarnings("ignore")
 arena = Parse_Prompt()
 score = Score()
 
-with gr.Blocks(fill_height = True) as app:
+with gr.Blocks() as app:
     with gr.Tab("🪖 Battle Field"):
         gr.Markdown('''## ⚔️ LLM: Large Language Mayhem
                     - Voting should be fair and based on the performance of the models.
@@ -47,7 +47,7 @@ with gr.Blocks(fill_height = True) as app:
             clear = gr.ClearButton([textbox, chatbox1, chatbox2], value = "🧹 Clear")
         with gr.Row():
             with gr.Accordion("🔩 Parameters", open = False):
-                temp_slider = gr.Slider(0,1,value = 0.7, step=0.1, label = "Temprature")
+                temp_slider = gr.Slider(0,1,value = 0.7, step=0.1, label = "Temperature")
 
         textbox.submit(
             fn = arena.gen_output,

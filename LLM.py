@@ -3,8 +3,7 @@ from langchain_groq import ChatGroq
 from langchain_huggingface import ChatHuggingFace
 from langchain_huggingface import HuggingFaceEndpoint
 from dotenv import load_dotenv
-from langchain.schema.output_parser import StrOutputParser
-from langchain_huggingface import ChatHuggingFace
+from langchain_core.output_parsers import StrOutputParser
 from langchain_google_genai import ChatGoogleGenerativeAI
 import os
 from huggingface_hub import login
@@ -75,22 +74,22 @@ class Bot():
 
     def call_google(self,model, temp=0.7, given_prompt = "Hi"):
         try:
-            model = ChatGoogleGenerativeAI(model = model, temprature = temp)
+            llm = ChatGoogleGenerativeAI(model = model, temperature = temp)
             system = "You are a helpful assistant."
             human = "{text}"
             prompt = ChatPromptTemplate.from_messages([("human", human)])
-            chain = prompt | model | StrOutputParser()
+            chain = prompt | llm | StrOutputParser()
             return chain.invoke({"text": given_prompt})
         except Exception as e:
             return f"Error: {str(e)}"
 
-    def response(self, model, prompt="Hi", temprature = 0.7):
+    def response(self, model, prompt="Hi", temperature = 0.7):
         if model in self.groq_models:
-            res_show = self.call_groq(temp = temprature, given_prompt = prompt, model= model)
+            res_show = self.call_groq(temp = temperature, given_prompt = prompt, model= model)
         elif model in self.hf_models:
-            res_show = self.call_hf(given_prompt = prompt, temp = temprature, model = model)
+            res_show = self.call_hf(given_prompt = prompt, temp = temperature, model = model)
         elif model in self.google_models:
-            res_show = self.call_google(given_prompt = prompt, temp = temprature, model = model)
+            res_show = self.call_google(given_prompt = prompt, temp = temperature, model = model)
         else:
             return "Sorry! App not working properly"
         return res_show
